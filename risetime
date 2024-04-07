@@ -1,0 +1,25 @@
+clc;
+clear;
+datarate =input("What is your required datarate (Mbps): ");
+Br=input("Enter the Bandwidth of reciever (MHz): ");
+ts=input("Enter the rise time of source(ns): ");
+tm=input("Enter the rise time due to material dispersion(ns): ");
+tmodal=input("Enter rise time due modal dispersion: ")
+td= 350/Br;
+
+disp("Rise time of detector: ", td);
+
+tsys = sqrt((ts)^2 + (td)^2 + (tm)^2 + (tmodal)^2);
+disp("Rise time of the system: ", tsys);
+
+NRZ = (0.70/tsys)*1000;
+RZ = (0.35/tsys)*1000;
+
+disp("NRZ data transmission rate in Mbps: ", NRZ);
+disp("RZ data transmission rate in Mbps: ", RZ);
+
+if (NRZ>datarate && RZ<datarate) then
+    disp("Data format supported is NRZ");
+else
+    disp("Data format supported is RZ");
+end
