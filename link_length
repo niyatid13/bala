@@ -1,0 +1,21 @@
+clc;
+clear;
+
+L=input("Enter the link length for which you want to design your fiber (km): ");
+Pt=input("Enter the transmitted power in db: ");
+Pr=input("Enter the recieved power in db: ");
+Lc=input("Enter the connector loss: ");
+n=input("Enter the no. of connector: ");
+Lsp=input("Enter the splice loss: ");
+alpha=input("Enter attenuation loss: ");
+m = (L/2) - 1;
+SM = 6;
+disp("System margin is 6dB.");
+l= (Pt-Pr-SM-(n*Lc)-(m*Lsp))/(alpha);
+disp("Link length in km: ", l);
+
+if l>L then
+    disp("It is possible to design the optical fiber for these design considerations.");
+else
+    disp("It is not possible to design the optical fiber with these design considerations so either increase the tx power or manage rx sensitivity.")
+end
